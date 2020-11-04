@@ -61,5 +61,16 @@ from bank.account a
 right join bank.loan l on a.account_id = l.account_id
 order by a.account_id;
 
+# rank of districts by population
+select *, rank() over (order by A4 desc) from bank.district;
+
+# Checking which cities in each region have the most population
+select *, rank() over (partition by A3 order by A4 desc) from bank.district;
+
+# checking which regions have the most population
+select *, rank() over (order by A4 desc) from bank.district group by A3;
+
+
+
 
 
